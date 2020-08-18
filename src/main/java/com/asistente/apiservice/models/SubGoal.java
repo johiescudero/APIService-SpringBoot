@@ -16,14 +16,14 @@ public class SubGoal {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idGoal", length=50, nullable=false, unique=true)
+    @Column(name="idGoal", nullable=false, unique=true)
     private int idGoal;
 
     @ManyToOne(targetEntity = FinalTest.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
 
-    @Column(name="objetivo", length=50, nullable=false, unique=false)
+    @Column(name="objetivo", nullable=false, unique=false)
     private String objetivo;
 
     public int getIdGoal() {

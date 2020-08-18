@@ -16,10 +16,12 @@
     <java.version>14</java.version>
   </properties>
   <dependencies>
+     <!-- Dependencia: WEB -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+     <!-- Dependencia: TEST -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -31,27 +33,32 @@
         </exclusion>
       </exclusions>
     </dependency>
+     <!-- Dependencia: JPA -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
       <scope>compile</scope>
     </dependency>
+     <!-- Dependencia: MySQL CONNECTOR -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <scope>runtime</scope>
     </dependency>
+     <!-- Dependencia: JDBC -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- Dependencia:SPRING SECURITY -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
       <scope>compile</scope>
     </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>

@@ -28,12 +28,14 @@ class ApiserviceApplicationTests {
 	public void crearUsuarioTest(){
 
 		Users nuevoUser = new Users();
-		nuevoUser.setIdUser(1);
 		nuevoUser.setName("Johanna");
 		nuevoUser.setPassword(encoder.encode("12345"));
-		Users retorno = repositorio.save(nuevoUser);
+		nuevoUser.setEmail("jannaescudero@gmail.com");
+		nuevoUser.setIdUser(1);
+		Users usuarioGuardado = repositorio.save(nuevoUser);
+		
 
-		assertTrue(retorno.getPassword().equalsIgnoreCase(nuevoUser.getPassword()));
+		assertTrue(usuarioGuardado.getEmail().equalsIgnoreCase(nuevoUser.getEmail()));
 	}
 
 }

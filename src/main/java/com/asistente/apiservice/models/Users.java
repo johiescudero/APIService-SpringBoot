@@ -13,13 +13,13 @@ public class Users {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", length=50, nullable=false, unique=true)
+    @Column(name="id",nullable=false, unique=true)
     private int id;
-    @Column(name="name", length=50, nullable=false, unique=false)
+    @Column(name="name", nullable=false, unique=false)
     private String name;
-    @Column(name="email", length=50, nullable=false, unique=true)
+    @Column(name="email", nullable=false, unique=true)
     private String email;
-    @Column(name="password", length=50, nullable=false, unique=false)
+    @Column(name="password", nullable=false, unique=false)
     private String password;
 
     public int getIdUser() {
