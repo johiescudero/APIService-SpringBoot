@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "FinalTests")
@@ -25,15 +26,19 @@ public class FinalTest {
     private int idUser;
     
     @Column(name="materia", length=50, nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo materia")
     private String materia;
     
     @Column(name="inicioEstudioDate", length=50, nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo fecha inicio")
     private Date inicioEstudioDate;
     
     @Column(name="finaltestDate", length=50, nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo fecha final")
     private Date finalTestDate;
     
     @Column(name="modo", length=50, nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo modo")
     private String modo;
 
     public int getId() {

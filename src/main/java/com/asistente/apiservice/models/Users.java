@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Users")
@@ -15,11 +16,17 @@ public class Users {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id",nullable=false, unique=true)
     private int id;
+    
     @Column(name="name", nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo nombre")
     private String name;
+    
     @Column(name="email", nullable=false, unique=true)
+    @NotBlank(message = "Se requiere completar el campo email")
     private String email;
+    
     @Column(name="password", nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo password")
     private String password;
 
     public int getIdUser() {

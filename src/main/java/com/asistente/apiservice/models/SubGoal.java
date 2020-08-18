@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Goals")
@@ -24,6 +25,7 @@ public class SubGoal {
     private int idFinal;
 
     @Column(name="objetivo", nullable=false, unique=false)
+    @NotBlank(message = "Se requiere completar el campo objetivo") 
     private String objetivo;
 
     public int getIdGoal() {
