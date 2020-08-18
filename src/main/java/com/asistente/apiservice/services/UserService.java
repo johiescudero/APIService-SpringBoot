@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.asistente.apiservice.models.Users;
-import com.asistente.apiservice.repository.IUserRepository;
+import com.asistente.apiservice.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,15 +19,15 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
     //Indica a spring de donde se van a sacar los datos del usuario.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        Users usuario = userRepository.findByNombre(username);
+        Users usuario = userRepository.findByName(username);
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority("ADMIN"));
-        UserDetails newUserDetails = new User(usuario.getNombre(),usuario.getClave(),roles);
+        UserDetails newUserDetails = new User(usuario.getName(), usuario.getPassword(), roles);
         return newUserDetails;
     }
     

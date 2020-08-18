@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.asistente.apiservice.models.Users;
 
-import com.asistente.apiservice.repository.IUserRepository;
+import com.asistente.apiservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
     
     @GetMapping
     public List<Users> listar(){

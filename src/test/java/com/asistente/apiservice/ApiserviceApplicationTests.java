@@ -3,7 +3,7 @@ package com.asistente.apiservice;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.asistente.apiservice.models.Users;
-import com.asistente.apiservice.repository.IUserRepository;
+import com.asistente.apiservice.repository.UserRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 class ApiserviceApplicationTests {
 
 	@Autowired
-	private IUserRepository repositorio;
+	private UserRepository repositorio;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -28,12 +28,12 @@ class ApiserviceApplicationTests {
 	public void crearUsuarioTest(){
 
 		Users nuevoUser = new Users();
-		nuevoUser.setId(1);
-		nuevoUser.setNombre("Johanna");
-		nuevoUser.setClave(encoder.encode("12345"));
+		nuevoUser.setIdUser(1);
+		nuevoUser.setName("Johanna");
+		nuevoUser.setPassword(encoder.encode("12345"));
 		Users retorno = repositorio.save(nuevoUser);
 
-		assertTrue(retorno.getClave().equalsIgnoreCase(nuevoUser.getClave()));
+		assertTrue(retorno.getPassword().equalsIgnoreCase(nuevoUser.getPassword()));
 	}
 
 }

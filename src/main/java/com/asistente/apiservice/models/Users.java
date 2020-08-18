@@ -1,38 +1,59 @@
 package com.asistente.apiservice.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Users")
 public class Users {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", length=50, nullable=false, unique=true)
     private int id;
-    private String nombre;
-    private String clave;
+    @Column(name="name", length=50, nullable=false, unique=false)
+    private String name;
+    @Column(name="email", length=50, nullable=false, unique=true)
+    private String email;
+    @Column(name="password", length=50, nullable=false, unique=false)
+    private String password;
 
-    public int getId() {
+    public int getIdUser() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setIdUser(int id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getClave() {
-        return clave;
+    public String getEmail() {
+        return email;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
     
 }
