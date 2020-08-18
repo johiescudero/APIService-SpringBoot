@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<Users,Integer> {
     
     //Es una cláusula where en springboot 
-    //SELECT * FROM USER WHERE NOMBRE = nombre
+    //Select * FROM USER WHERE NAME = name
+    //Utilizado para a través de la configuración de Spring security obtener un usuario
     Users findByName(String name);
 }

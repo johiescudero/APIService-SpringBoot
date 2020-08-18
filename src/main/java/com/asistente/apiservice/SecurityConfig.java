@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return bCryptPasswordEncoder;
     }
 
+    //Configuración de dónde están los usuarios registrados
     @Override
     protected void configure(AuthenticationManagerBuilder auth)throws Exception{
         auth
