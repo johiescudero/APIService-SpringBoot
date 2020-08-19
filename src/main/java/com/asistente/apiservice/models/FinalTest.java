@@ -18,14 +18,14 @@ public class FinalTest {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", length=50, nullable=false, unique=true)
+    @Column(name="id", nullable=false, unique=true)
     private int id;
 
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     private int idUser;
     
-    @Column(name="materia", length=50, nullable=false, unique=false)
+    @Column(name="materia", nullable=false, unique=false)
     @NotBlank(message = "Se requiere completar el campo materia")
     private String materia;
     
