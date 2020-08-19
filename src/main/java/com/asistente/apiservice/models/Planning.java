@@ -1,7 +1,6 @@
 package com.asistente.apiservice.models;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+
 
 @Entity
 public class Planning {
@@ -28,8 +28,11 @@ public class Planning {
     @NotBlank(message = "Se requiere completar el campo modo")
     private String modo;
 
+    @Column(name="cantDiasEstimados", nullable=false, unique=false)
+    private int cantDiasEstimados;
+
     @Column(name="planificacion", nullable=false, unique=true)
-    private List<String> planificacion;
+    private List<SubGoal> objetivos;
 
     public int getId() {
         return id;
@@ -55,11 +58,11 @@ public class Planning {
         this.modo = modo;
     }
 
-    public List<String> getPlanificación() {
-        return planificacion;
+    public List<SubGoal> getObjetivos() {
+        return objetivos;
     }
 
-    public void setPlanificación(List<String> planificacion) {
-        this.planificacion = planificacion;
+    public void setPlanificación(List<SubGoal> objetivos) {
+        this.objetivos = objetivos;
     }
 }

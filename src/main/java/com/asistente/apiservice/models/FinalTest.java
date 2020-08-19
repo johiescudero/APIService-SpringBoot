@@ -1,6 +1,7 @@
 package com.asistente.apiservice.models;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,10 +38,6 @@ public class FinalTest {
     @NotBlank(message = "Se requiere completar el campo fecha final")
     private Date finalTestDate;
     
-    @Column(name="modo", length=50, nullable=false, unique=false)
-    @NotBlank(message = "Se requiere completar el campo modo")
-    private String modo;
-
     public int getId() {
         return id;
     }
@@ -81,12 +78,5 @@ public class FinalTest {
         this.finalTestDate = finalTestDate;
     }
 
-    public String getModo() {
-        return modo;
-    }
-
-    public void setModo(String modo) {
-        this.modo = modo;
-    }
-    
+         
 }
