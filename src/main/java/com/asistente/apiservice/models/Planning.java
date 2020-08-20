@@ -1,6 +1,5 @@
 package com.asistente.apiservice.models;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,9 +30,6 @@ public class Planning {
     @Column(name="cantDiasEstimados", nullable=false, unique=false)
     private int cantDiasEstimados;
 
-    @Column(name="planificacion", nullable=false, unique=true)
-    private List<SubGoal> objetivos;
-
     public int getId() {
         return id;
     }
@@ -58,11 +54,12 @@ public class Planning {
         this.modo = modo;
     }
 
-    public List<SubGoal> getObjetivos() {
-        return objetivos;
+    public int getCantDiasEstimados() {
+        return cantDiasEstimados;
     }
 
-    public void setPlanificación(List<SubGoal> objetivos) {
-        this.objetivos = objetivos;
+    public void setCantDiasEstimados(int cantDiasEstimados) {
+        this.cantDiasEstimados = cantDiasEstimados;
     }
+
 }

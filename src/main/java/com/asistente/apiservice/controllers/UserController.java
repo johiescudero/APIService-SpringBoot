@@ -24,24 +24,25 @@ public class UserController {
     
     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
     @GetMapping
-    public List<Users> listar(){
+    public List<Users> listarUsers(){
       return userRepository.findAll();
       
     }
     /**POST : Añadir nuevo usuario */
     @PostMapping
-    public void insertar(@RequestBody Users newUser) {
+    public void addUser(@RequestBody Users newUser) {
         userRepository.save(newUser);
         
     }
     /**PUT : Actualizar un usuario */
     @PutMapping
-    public void modificar(@RequestBody Users user){
+    public void updateUser(@RequestBody Users user){
         userRepository.save(user);
     }
     /**DELETE : Eliminar un usuario con el id */
+    
     @DeleteMapping(value = "/{id}")
-    public void eliminar(@PathVariable ("id") Integer id){
+    public void deleteUser(@PathVariable ("id") Integer id){
         userRepository.deleteById(id);
     }
 }

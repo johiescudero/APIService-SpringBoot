@@ -16,28 +16,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
+@RequestMapping("/plannings")
 public class PlanningController {
     
     @Autowired
     private PlanningRepository planningRepository;
-  
     @Autowired
     private GoalRepository goalRepository;
 
     /**GET : Retorna el conjunto total de planificaciones registrados en la base de datos */
     @GetMapping
-    public List<Planning> listar(){
+    public List<Planning> listarPlanificaciones(){
       return planningRepository.findAll();
       
-    }
-
-    @PostMapping
-    public void insertar(@RequestBody Planning planificacion){
-        planningRepository.save(planificacion);
     }
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
@@ -51,8 +46,7 @@ public class PlanningController {
        if (cantDiasNecesarios<=cantDiasReales){
            newPlanning.setIdFinal(finalTest.getId());
            newPlanning.setModo(modo);
-           newPlanning.setPlanificación(objetivosFinal);
-           insertar(newPlanning);
+           planningRepository.save(newPlanning);
            return "Se puedo guardar la planificacion";
        }
        else
