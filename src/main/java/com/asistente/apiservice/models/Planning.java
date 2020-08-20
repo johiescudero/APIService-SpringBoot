@@ -23,11 +23,9 @@ public class Planning {
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
     
-    @Column(name="modo", nullable=false, unique=false)
     @NotBlank(message = "Se requiere completar el campo modo")
     private String modo;
 
-    @Column(name="cantDiasEstimados", nullable=false, unique=false)
     private int cantDiasEstimados;
 
     public int getId() {

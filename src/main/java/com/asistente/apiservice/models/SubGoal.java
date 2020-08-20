@@ -1,6 +1,5 @@
 package com.asistente.apiservice.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,12 @@ public class SubGoal {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idGoal", unique=true)
     private int idGoal;
 
     @ManyToOne(targetEntity = FinalTest.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
 
-    @Column(name="objetivo", unique=false)
     @NotBlank(message = "Se requiere completar el campo objetivo") 
     private String objetivo;
 

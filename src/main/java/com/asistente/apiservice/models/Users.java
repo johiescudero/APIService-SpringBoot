@@ -1,6 +1,5 @@
 package com.asistente.apiservice.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,18 +13,14 @@ public class Users {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id",nullable=false, unique=true)
     private int id;
-    
-    @Column(name="name", nullable=false, unique=false)
+
     @NotBlank(message = "Se requiere completar el campo nombre")
     private String name;
-    
-    @Column(name="email", nullable=false, unique=true)
+
     @NotBlank(message = "Se requiere completar el campo email")
     private String email;
     
-    @Column(name="password", nullable=false, unique=false)
     @NotBlank(message = "Se requiere completar el campo password")
     private String password;
 
