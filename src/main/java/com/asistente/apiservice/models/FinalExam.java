@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "FinalTests")
-public class FinalTest {
+@Table(name = "FinalExams")
+public class FinalExam {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

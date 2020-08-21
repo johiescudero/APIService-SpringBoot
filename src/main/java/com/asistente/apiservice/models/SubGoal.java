@@ -18,7 +18,7 @@ public class SubGoal {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idGoal;
 
-    @ManyToOne(targetEntity = FinalTest.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = FinalExam.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
 

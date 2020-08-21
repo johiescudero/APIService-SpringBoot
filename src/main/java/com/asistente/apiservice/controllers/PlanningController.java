@@ -3,24 +3,21 @@ package com.asistente.apiservice.controllers;
 import java.util.Date;
 import java.util.List;
 
-import com.asistente.apiservice.models.FinalTest;
+import com.asistente.apiservice.models.FinalExam;
 import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.models.SubGoal;
 import com.asistente.apiservice.repository.GoalRepository;
 import com.asistente.apiservice.repository.PlanningRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/plannings")
+@RequestMapping(value ="/plannings")
 public class PlanningController {
     
     @Autowired
@@ -29,15 +26,15 @@ public class PlanningController {
     private GoalRepository goalRepository;
 
     /**GET : Retorna el conjunto total de planificaciones registrados en la base de datos */
-    @GetMapping
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Planning> listarPlanificaciones(){
       return planningRepository.findAll();
       
     }
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-   @PostMapping
-   public String crearPlanificacion(@RequestBody FinalTest finalTest, String modo) {
+    @RequestMapping(value = "/addPlanning", method = RequestMethod.POST)
+    public String crearPlanificacion(@RequestBody FinalExam finalTest, String modo) {
        Planning newPlanning = new Planning();
        long cantDiasReales = getCantDiasReales(finalTest);
        List<SubGoal> objetivosFinal = goalRepository.findByIdFinal(finalTest.getId());
@@ -55,7 +52,7 @@ public class PlanningController {
    }
 
    //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantida de días reales para estudiar.
-   private long getCantDiasReales(FinalTest finalTest){
+   private long getCantDiasReales(FinalExam finalTest){
         Date fechaInicioEstudio = finalTest.getInicioEstudioDate();
         Date fechaFinal = finalTest.getFinalTestDate();
         long diferencia = fechaFinal.getTime() - fechaInicioEstudio.getTime();
@@ -75,13 +72,13 @@ public class PlanningController {
 
 
    /**PUT : Actualizar una planificación */
-   @PutMapping
+   @RequestMapping(value = "/updatePlanning", method = RequestMethod.PUT)
    public void modificar(@RequestBody Planning planificacion){
        planningRepository.save(planificacion);
    }
 
    /**DELETE : Eliminar un usuario con el id */
-   @DeleteMapping(value = "/{id}")
+   @RequestMapping(value = "/deletePlanning/{id}", method = RequestMethod.DELETE)
    public void eliminar(@PathVariable ("id") Integer id){
       planningRepository.deleteById(id);
    }

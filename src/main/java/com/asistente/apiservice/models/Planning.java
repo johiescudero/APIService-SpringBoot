@@ -19,7 +19,7 @@ public class Planning {
     @Column(name="id", nullable=false, unique=true)
     private int id;
 
-    @ManyToOne(targetEntity = FinalTest.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = FinalExam.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
     
