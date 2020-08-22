@@ -33,5 +33,24 @@ public class UserService implements UserDetailsService {
         
         return newUserDetails;
     }
+
+    /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
+    public List<Users> listarUsers(){
+      return userRepository.findAll();
+      
+    }
+    /**POST : Añadir nuevo usuario */
+    public void addUser(Users newUser) {
+        userRepository.save(newUser);
+        
+    }
+    /**PUT : Actualizar un usuario */
+    public void updateUser(Users user){
+        userRepository.save(user);
+    }
+    /**DELETE : Eliminar un usuario con el id */
+    public void deleteUser(Integer id){
+        userRepository.deleteById(id);
+    }
     
 }
