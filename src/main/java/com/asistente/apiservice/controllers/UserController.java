@@ -6,10 +6,13 @@ import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,24 +23,24 @@ public class UserController {
     private UserService userService; 
     
     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<Users> listarUsers(){
       return userService.listarUsers();
       
     }
     /**POST : Añadir nuevo usuario */
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public void addUser(@RequestBody Users newUser) {
-        userService.addUser(newUser);
+    @PostMapping(value = "/addUser")
+    public void addUser(@RequestBody String name, String email, String password) {
+        userService.addUser(name,email,password);
         
     }
     /**PUT : Actualizar un usuario */
-    @RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-    public void updateUser(@RequestBody Users user){
-        userService.updateUser(user);
+    @PutMapping(value = "/updateUser/{id}")
+    public void updateUser(@RequestBody String name, String email, String password){
+        userService.updateUser(name,email,password);
     }
     /**DELETE : Eliminar un usuario con el id */
-    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/deleteUser/{id}")
     public void deleteUser(@PathVariable ("id") Integer id){
         userService.deleteUser(id);
     }

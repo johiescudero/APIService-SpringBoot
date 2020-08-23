@@ -26,9 +26,9 @@ class ApiserviceApplicationTests {
 	public void crearUsuarioTest(){
 
 		Users nuevoUser = new Users();
-		nuevoUser.setName("Test_1");
+		nuevoUser.setName("Test_2");
 		nuevoUser.setPassword(encoder.encode("12345"));
-		nuevoUser.setEmail("test-1@gmail.com");
+		nuevoUser.setEmail("test-2@gmail.com");
 		Users usuarioGuardado = userRepository.save(nuevoUser);
 		assertTrue(usuarioGuardado.getEmail().equalsIgnoreCase(nuevoUser.getEmail()));
 	}

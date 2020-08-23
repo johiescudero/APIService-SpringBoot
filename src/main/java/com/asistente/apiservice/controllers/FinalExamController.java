@@ -21,7 +21,7 @@ public class FinalExamController {
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
      @RequestMapping(value = "/all", method = RequestMethod.GET)
-     public List<FinalExam> getFinales(){
+     public List<FinalExam> getFinales() {
        return finalExamService.getFinales();
      }
 

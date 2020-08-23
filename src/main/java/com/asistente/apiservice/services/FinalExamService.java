@@ -15,7 +15,7 @@ public class FinalExamService {
     private FinalExamRepository finalExamRepository;
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
-    public List<FinalExam> getFinales(){
+    public List<FinalExam> getFinales() {
       return finalExamRepository.findAll();
     }
 

@@ -15,7 +15,7 @@ public class GoalService {
     private GoalRepository goalRepository;
 
     /** Retorna el conjunto total de objetivos registrados en la base de datos */
-    public List<SubGoal> getGoals(){
+    public List<SubGoal> getGoals() {
       return goalRepository.findAll();
     }
      /**POST : Añadir nuevo subgoal */
