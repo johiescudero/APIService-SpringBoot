@@ -40,19 +40,11 @@ public class UserService implements UserDetailsService {
       
     }
     /**POST : Añadir nuevo usuario */
-    public void addUser(String name, String email, String password) {
-        Users newUser = new Users();
-        newUser.setName(name);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
-        userRepository.save(newUser);
+    public Users addUser(Users newUser) {
+        return userRepository.save(newUser);
     }
     /**PUT : Actualizar un usuario */
-    public void updateUser(String name, String email, String password){
-        Users updUser = new Users();
-        updUser.setName(name);
-        updUser.setEmail(email);
-        updUser.setPassword(password);
+    public void updateUser(Users updUser){
         userRepository.save(updUser);
     }
     /**DELETE : Eliminar un usuario con el id */

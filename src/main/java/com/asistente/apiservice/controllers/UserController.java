@@ -30,14 +30,14 @@ public class UserController {
     }
     /**POST : Añadir nuevo usuario */
     @PostMapping(value = "/addUser")
-    public void addUser(@RequestBody String name, String email, String password) {
-        userService.addUser(name,email,password);
+    public Users addUser(@RequestBody Users newUsers) {
+       return userService.addUser(newUsers);
         
     }
     /**PUT : Actualizar un usuario */
     @PutMapping(value = "/updateUser/{id}")
-    public void updateUser(@RequestBody String name, String email, String password){
-        userService.updateUser(name,email,password);
+    public void updateUser(@RequestBody Users updUser){
+        userService.updateUser(updUser);
     }
     /**DELETE : Eliminar un usuario con el id */
     @DeleteMapping(value = "/deleteUser/{id}")

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Goals")
+@Table(name = "goals")
 public class SubGoal {
     
     @Id
