@@ -1,6 +1,8 @@
 package com.asistente.apiservice.models;
 
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,11 +14,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "FinalExams")
-public class FinalExam {
+@Table(name = "exams")
+public class Exam {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", nullable=false, unique=true)
     private int id;
 
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.LAZY)
@@ -24,14 +27,20 @@ public class FinalExam {
     private int idUser;
     
     @NotBlank(message = "Se requiere completar el campo materia")
+    @Column(name = "materia", nullable = false)
     private String materia;
     
     @NotBlank(message = "Se requiere completar el campo fecha inicio")
+    @Column(name = "inicioEstudioDate", nullable = false)
     private Date inicioEstudioDate;
     
     @NotBlank(message = "Se requiere completar el campo fecha final")
+    @Column(name = "finalEstudioDate", nullable = false)
     private Date finalTestDate;
   
+    //Constructor
+    public Exam(){}
+
     public int getId() {
         return id;
     }

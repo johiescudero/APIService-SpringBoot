@@ -2,42 +2,45 @@ package com.asistente.apiservice.controllers;
 
 import java.util.List;
 
-import com.asistente.apiservice.models.FinalExam;
-import com.asistente.apiservice.services.FinalExamService;
+import com.asistente.apiservice.models.Exam;
+import com.asistente.apiservice.services.ExamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value ="/exams")
-public class FinalExamController {
+public class ExamController {
 
-      @Autowired
-      private FinalExamService finalExamService; 
+    @Autowired
+    private ExamService finalExamService; 
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
-     @RequestMapping(value = "/all", method = RequestMethod.GET)
-     public List<FinalExam> getFinales() {
+    @GetMapping(value = "/all")
+     public List<Exam> getFinales() {
        return finalExamService.getFinales();
      }
 
      /**POST : Añadir nuevo final */
-    @RequestMapping(value = "/addFinalExam", method = RequestMethod.POST)
-    public void addFinalTest(@RequestBody FinalExam newFinalTest) {
+    @PostMapping(value = "/add")
+    public void addFinalTest(@RequestBody Exam newFinalTest) {
       finalExamService.addFinalTest(newFinalTest);
         
     }
     /**PUT : Actualizar un final */
-    @RequestMapping(value = "/updateExam", method = RequestMethod.PUT)
-    public void updateFinalTest(@RequestBody FinalExam user){
+    @PutMapping(value = "/update/{id}")
+    public void updateFinalTest(@RequestBody Exam user){
       finalExamService.updateFinalTest(user);
     }
     /**DELETE : Eliminar un final con el id */
-    @RequestMapping(value = "/deleteFinalTest/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id}")
     public void deleteFinalTest(@PathVariable ("id") Integer id){
       finalExamService.deleteFinalTest(id);
     }

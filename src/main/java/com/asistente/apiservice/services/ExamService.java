@@ -2,30 +2,30 @@ package com.asistente.apiservice.services;
 
 import java.util.List;
 
-import com.asistente.apiservice.models.FinalExam;
-import com.asistente.apiservice.repository.FinalExamRepository;
+import com.asistente.apiservice.models.Exam;
+import com.asistente.apiservice.repository.ExamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FinalExamService {
+public class ExamService {
     
     @Autowired
-    private FinalExamRepository finalExamRepository;
+    private ExamRepository finalExamRepository;
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
-    public List<FinalExam> getFinales() {
+    public List<Exam> getFinales() {
       return finalExamRepository.findAll();
     }
 
     /**POST : Añadir nuevo final */
-   public void addFinalTest(FinalExam newFinalTest) {
+   public void addFinalTest(Exam newFinalTest) {
     finalExamRepository.save(newFinalTest);
        
    }
    /**PUT : Actualizar un final */
-   public void updateFinalTest(FinalExam finalExam){
+   public void updateFinalTest(Exam finalExam){
     finalExamRepository.save(finalExam);
    }
    /**DELETE : Eliminar un final con el id */

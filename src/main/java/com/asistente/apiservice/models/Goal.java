@@ -1,5 +1,6 @@
 package com.asistente.apiservice.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,19 +13,24 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "goals")
-public class SubGoal {
+public class Goal {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", nullable=false, unique=true)
     private int idGoal;
 
-    @ManyToOne(targetEntity = FinalExam.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Exam.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
 
-    @NotBlank(message = "Se requiere completar el campo objetivo") 
+    @NotBlank(message = "Se requiere completar el campo objetivo")
+    @Column(name = "objetivo", nullable = false) 
     private String objetivo;
 
+    //Constructor
+    public Goal(){}
+    
     public int getIdGoal() {
         return idGoal;
     }

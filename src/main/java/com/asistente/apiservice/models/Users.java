@@ -14,21 +14,24 @@ public class Users {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", nullable=false, unique=true)
     private int id;
 
     @NotBlank(message = "Se requiere completar el campo nombre")
-    @Column(name="name")
+    @Column(name="name",nullable=false)
     private String name;
 
     @NotBlank(message = "Se requiere completar el campo email")
-    @Column(name="email")
+    @Column(name="email", nullable=false, unique=true)
     private String email;
     
     @NotBlank(message = "Se requiere completar el campo password")
-    @Column(name="password")
+    @Column(name="password", nullable=false)
     private String password;
 
+    //Constructor
+    public Users(){}
+    
     public int getIdUser() {
         return id;
     }

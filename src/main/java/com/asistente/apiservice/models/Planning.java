@@ -8,10 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 
 @Entity
+@Table(name = "plannings")
 public class Planning {
     
     @Id
@@ -19,15 +21,18 @@ public class Planning {
     @Column(name="id", nullable=false, unique=true)
     private int id;
 
-    @ManyToOne(targetEntity = FinalExam.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Exam.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
     private int idFinal;
     
     @NotBlank(message = "Se requiere completar el campo modo")
+    @Column(name="modo", nullable=false)
     private String modo;
 
     private int cantDiasEstimados;
 
+    //Constructor
+    public Planning(){}
     public int getId() {
         return id;
     }

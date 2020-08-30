@@ -2,7 +2,7 @@ package com.asistente.apiservice.controllers;
 
 import java.util.List;
 
-import com.asistente.apiservice.models.SubGoal;
+import com.asistente.apiservice.models.Goal;
 import com.asistente.apiservice.services.GoalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +21,18 @@ public class GoalController {
 
     /** Retorna el conjunto total de objetivos registrados en la base de datos */
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<SubGoal> getGoals(){
+    public List<Goal> getGoals(){
       return goalService.getGoals();
     }
      /**POST : Añadir nuevo subgoal */
     @RequestMapping(value = "/addGoal", method = RequestMethod.GET)
-    public void addGoal(@RequestBody SubGoal newSubGoal) {
+    public void addGoal(@RequestBody Goal newSubGoal) {
       goalService.addGoal(newSubGoal);
         
     }
     /**PUT : Actualizar un subgoal */
     @RequestMapping(value = "/updateGoal", method = RequestMethod.PUT)
-    public void updateGoal(@RequestBody SubGoal subGoal){
+    public void updateGoal(@RequestBody Goal subGoal){
       goalService.updateGoal(subGoal);
     }
     /**DELETE : Eliminar un subgoal con el id */

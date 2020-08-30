@@ -3,9 +3,9 @@ package com.asistente.apiservice.services;
 import java.util.Date;
 import java.util.List;
 
-import com.asistente.apiservice.models.FinalExam;
+import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Planning;
-import com.asistente.apiservice.models.SubGoal;
+import com.asistente.apiservice.models.Goal;
 import com.asistente.apiservice.repository.GoalRepository;
 import com.asistente.apiservice.repository.PlanningRepository;
 
@@ -27,10 +27,10 @@ public class PlanningService {
      }
  
      /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-     public String crearPlanificacion(FinalExam finalTest, String modo) {
+     public String crearPlanificacion(Exam finalTest, String modo) {
         Planning newPlanning = new Planning();
         long cantDiasReales = getCantDiasReales(finalTest);
-        List<SubGoal> objetivosFinal = goalRepository.findByIdFinal(finalTest.getId());
+        List<Goal> objetivosFinal = goalRepository.findByIdFinal(finalTest.getId());
         int cantDiasNecesarios = getCantDiasPorTema(modo,objetivosFinal.size());
  
         if (cantDiasNecesarios<=cantDiasReales){
@@ -45,7 +45,7 @@ public class PlanningService {
     }
  
     //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantida de días reales para estudiar.
-    private long getCantDiasReales(FinalExam finalTest){
+    private long getCantDiasReales(Exam finalTest){
          Date fechaInicioEstudio = finalTest.getInicioEstudioDate();
          Date fechaFinal = finalTest.getFinalTestDate();
          long diferencia = fechaFinal.getTime() - fechaInicioEstudio.getTime();

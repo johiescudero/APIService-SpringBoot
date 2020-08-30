@@ -2,7 +2,7 @@ package com.asistente.apiservice.controllers;
 
 import java.util.List;
 
-import com.asistente.apiservice.models.FinalExam;
+import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.services.PlanningService;
 
@@ -29,7 +29,7 @@ public class PlanningController {
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
     @RequestMapping(value = "/addPlanning", method = RequestMethod.POST)
-    public String crearPlanificacion(@RequestBody FinalExam finalTest, String modo) { 
+    public String crearPlanificacion(@RequestBody Exam finalTest, String modo) { 
         return planningService.crearPlanificacion(finalTest, modo);
     }
 
