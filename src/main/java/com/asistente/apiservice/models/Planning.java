@@ -18,7 +18,6 @@ public class Planning {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, unique=true)
     private int id;
 
     @ManyToOne(targetEntity = Exam.class, fetch = FetchType.LAZY)

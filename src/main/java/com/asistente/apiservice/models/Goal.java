@@ -17,8 +17,7 @@ public class Goal {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, unique=true)
-    private int idGoal;
+    private int id;
 
     @ManyToOne(targetEntity = Exam.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFinal", referencedColumnName = "id")
@@ -31,12 +30,12 @@ public class Goal {
     //Constructor
     public Goal(){}
     
-    public int getIdGoal() {
-        return idGoal;
+    public int getId() {
+        return id;
     }
 
-    public void setIdGoal(int idGoal) {
-        this.idGoal = idGoal;
+    public void setId(int idGoal) {
+        this.id = idGoal;
     }
 
     public int getIdFinal() {
