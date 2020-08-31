@@ -23,7 +23,7 @@ public class Exam {
     private int id;
 
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUser", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private int idUser;
     
     @NotBlank(message = "Se requiere completar el campo materia")

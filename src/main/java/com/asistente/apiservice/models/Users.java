@@ -14,7 +14,6 @@ public class Users {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, unique=true)
     private int id;
 
     @NotBlank(message = "Se requiere completar el campo nombre")
