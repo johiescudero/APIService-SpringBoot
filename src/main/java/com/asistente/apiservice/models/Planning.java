@@ -11,8 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-
-@Entity
+@Entity(name = "Planning")
 @Table(name = "plannings")
 public class Planning {
     

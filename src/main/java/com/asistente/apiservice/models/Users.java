@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-@Entity
+@Entity(name = "Users")
 @Table(name = "users")
 public class Users {
     
@@ -28,17 +28,10 @@ public class Users {
     @Column(name="password", nullable=false)
     private String password;
 
+        
     //Constructor
     public Users(){}
     
-    public int getIdUser() {
-        return id;
-    }
-
-    public void setIdUser(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -63,6 +56,12 @@ public class Users {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
 
-    
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
