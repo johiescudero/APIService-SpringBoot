@@ -32,11 +32,13 @@ public class PlanningService {
         Planning newPlanning = new Planning();
         long cantDiasReales = getCantDiasReales(finalTest);
         List<Goal> objetivosFinal = goalRepository.findByExam(finalTest);
-        int cantDiasNecesarios = getCantDiasPorTema(modo,objetivosFinal.size());
+        long cantDiasNecesarios = getCantDiasPorTemaNecesarios(modo,objetivosFinal.size());
  
         if (cantDiasNecesarios<=cantDiasReales){
             newPlanning.setExam(finalTest);
             newPlanning.setModo(modo);
+            newPlanning.setCantDiasNecesarios(cantDiasNecesarios);
+            newPlanning.setCantDiasReales(cantDiasReales);
             planningRepository.save(newPlanning);
             return "Se puedo guardar la planificacion";
         }
@@ -45,23 +47,23 @@ public class PlanningService {
           
     }
  
-    //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantida de días reales para estudiar.
-    private long getCantDiasReales(Exam finalTest){
+    //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantidad de días reales para estudiar.
+    public long getCantDiasReales(Exam finalTest){
          Date fechaInicioEstudio = finalTest.getInicioEstudioDate();
          Date fechaFinal = finalTest.getFinalTestDate();
          long diferencia = fechaFinal.getTime() - fechaInicioEstudio.getTime();
          long days = diferencia / (24*60*60*1000);
-        return days;
+        return days - 1;
     }
  
-    private int getCantDiasPorTema(Mode modo, int cantTemas){
+    public int getCantDiasPorTemaNecesarios(Mode modo, int cantTemas){
         int cantDiasPorTema;
         //Si el modo es estandar ==> Cantidad de días por tema = 4 
-        if ((modo.getModo()).compareTo("Estandar")==0)
+        if ((modo.getModo()).compareTo("Estándar")==0)
              cantDiasPorTema= 4;
          else
              cantDiasPorTema= 2;
-         return Math.round(cantTemas/cantDiasPorTema);
+         return Math.round(cantTemas*cantDiasPorTema);
     }
  
  

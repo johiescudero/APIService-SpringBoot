@@ -5,46 +5,39 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 @Entity(name = "Planning")
 @Table(name = "plannings")
 public class Planning {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Exam exam;
-    
-    @NotBlank(message = "Se requiere completar el campo modo")
-    @OneToOne
+
+    @ManyToOne
     @PrimaryKeyJoinColumn
     private Mode modo;
 
-    private int cantDiasEstimados;
+    private Long cantDiasReales;
 
-    //Constructor
-    public Planning(){}
+    private Long cantDiasNecesarios;
+
+    // Constructor
+    public Planning() {
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getCantDiasEstimados() {
-        return cantDiasEstimados;
-    }
-
-    public void setCantDiasEstimados(int cantDiasEstimados) {
-        this.cantDiasEstimados = cantDiasEstimados;
     }
 
     public Mode getModo() {
@@ -62,5 +55,23 @@ public class Planning {
     public void setExam(Exam exam) {
         this.exam = exam;
     }
+
+    public Long getCantDiasReales() {
+        return cantDiasReales;
+    }
+
+    public void setCantDiasReales(Long cantDiasReales) {
+        this.cantDiasReales = cantDiasReales;
+    }
+
+    public Long getCantDiasNecesarios() {
+        return cantDiasNecesarios;
+    }
+
+    public void setCantDiasNecesarios(Long cantDiasNecesarios) {
+        this.cantDiasNecesarios = cantDiasNecesarios;
+    }
+
+
 
 }
