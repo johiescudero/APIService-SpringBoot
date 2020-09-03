@@ -2,12 +2,11 @@ package com.asistente.apiservice.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -19,9 +18,9 @@ public class Goal {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(targetEntity = Exam.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idFinal", referencedColumnName = "id")
-    private int idFinal;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Exam exam;
 
     @NotBlank(message = "Se requiere completar el campo objetivo")
     @Column(name = "objetivo", nullable = false) 
@@ -29,21 +28,21 @@ public class Goal {
 
     //Constructor
     public Goal(){}
-    
+
     public int getId() {
         return id;
     }
 
-    public void setId(int idGoal) {
-        this.id = idGoal;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdFinal() {
-        return idFinal;
+    public Exam getExam() {
+        return exam;
     }
 
-    public void setIdFinal(int idFinal) {
-        this.idFinal = idFinal;
+    public void setExam(Exam exam) {
+        this.exam = exam;
     }
 
     public String getObjetivo() {
@@ -53,5 +52,6 @@ public class Goal {
     public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
     }
+
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.models.Goal;
+import com.asistente.apiservice.models.Mode;
 import com.asistente.apiservice.repository.GoalRepository;
 import com.asistente.apiservice.repository.PlanningRepository;
 
@@ -27,14 +28,14 @@ public class PlanningService {
      }
  
      /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-     public String crearPlanificacion(Exam finalTest, String modo) {
+     public String crearPlanificacion(Exam finalTest, Mode modo) {
         Planning newPlanning = new Planning();
         long cantDiasReales = getCantDiasReales(finalTest);
-        List<Goal> objetivosFinal = goalRepository.findByIdFinal(finalTest.getId());
+        List<Goal> objetivosFinal = goalRepository.findByExam(finalTest);
         int cantDiasNecesarios = getCantDiasPorTema(modo,objetivosFinal.size());
  
         if (cantDiasNecesarios<=cantDiasReales){
-            newPlanning.setIdFinal(finalTest.getId());
+            newPlanning.setExam(finalTest);
             newPlanning.setModo(modo);
             planningRepository.save(newPlanning);
             return "Se puedo guardar la planificacion";
@@ -53,10 +54,10 @@ public class PlanningService {
         return days;
     }
  
-    private int getCantDiasPorTema(String modo, int cantTemas){
+    private int getCantDiasPorTema(Mode modo, int cantTemas){
         int cantDiasPorTema;
         //Si el modo es estandar ==> Cantidad de días por tema = 4 
-        if (modo.compareTo("Estandar")==0)
+        if ((modo.getModo()).compareTo("Estandar")==0)
              cantDiasPorTema= 4;
          else
              cantDiasPorTema= 2;
