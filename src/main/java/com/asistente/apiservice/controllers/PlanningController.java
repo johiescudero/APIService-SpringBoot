@@ -33,7 +33,7 @@ public class PlanningController {
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
     @PostMapping(value = "/add")
-    public String crearPlanificacion(@RequestBody Exam finalTest, Mode modo) { 
+    public Planning crearPlanificacion(@RequestBody Exam finalTest, Mode modo) { 
         return planningService.crearPlanificacion(finalTest, modo);
     }
 

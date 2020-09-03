@@ -28,23 +28,26 @@ public class PlanningService {
      }
  
      /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-     public String crearPlanificacion(Exam finalTest, Mode modo) {
+     public Planning crearPlanificacion(Exam finalTest, Mode modo) {
+        //Creo la planificación
         Planning newPlanning = new Planning();
+        //Calculo la cantidad de días reales que se tienen para rendir el final
         long cantDiasReales = getCantDiasReales(finalTest);
+        //Calculo la cantidad de días necesarios de acuerdo al modo ingresado
         List<Goal> objetivosFinal = goalRepository.findByExam(finalTest);
         long cantDiasNecesarios = getCantDiasPorTemaNecesarios(modo,objetivosFinal.size());
  
-        if (cantDiasNecesarios<=cantDiasReales){
+        //Compara las dos entradas --> return 0 si son iguales
+        //                             return <0 si cantDiasNecesarios < cantDiasReales
+        if (Long.compare(cantDiasNecesarios, cantDiasReales)<=0){
             newPlanning.setExam(finalTest);
             newPlanning.setModo(modo);
             newPlanning.setCantDiasNecesarios(cantDiasNecesarios);
             newPlanning.setCantDiasReales(cantDiasReales);
-            planningRepository.save(newPlanning);
-            return "Se puedo guardar la planificacion";
+            return planningRepository.save(newPlanning);
         }
         else
-         return "ERROR: No es posible crear una planificacion";   
-          
+            return null;          
     }
  
     //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantidad de días reales para estudiar.
@@ -55,8 +58,8 @@ public class PlanningService {
          long days = diferencia / (24*60*60*1000);
         return days - 1;
     }
- 
-    public int getCantDiasPorTemaNecesarios(Mode modo, int cantTemas){
+    //METODO: Obtiene la cantidad de días NECESARIOS para estudiar todos los temas -> tiene en cuenta el modo
+     public int getCantDiasPorTemaNecesarios(Mode modo, int cantTemas){
         int cantDiasPorTema;
         //Si el modo es estandar ==> Cantidad de días por tema = 4 
         if ((modo.getModo()).compareTo("Estándar")==0)
