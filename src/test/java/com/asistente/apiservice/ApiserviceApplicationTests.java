@@ -37,9 +37,9 @@ class ApiserviceApplicationTests {
 	public void crearUsuarioTest(){
 
 		Users nuevoUser = new Users();
-		nuevoUser.setName("TEST_1_CREATE_USER");
+		nuevoUser.setName("TEST_6_CREATE_USER_VSC");
 		nuevoUser.setPassword(encoder.encode("12345"));
-		nuevoUser.setEmail("test-1@test.com");
+		nuevoUser.setEmail("test-6@test.com");
 		Users usuarioGuardado = userRepository.save(nuevoUser);
 		assertTrue(usuarioGuardado.getEmail().equalsIgnoreCase(nuevoUser.getEmail()));
 	}
@@ -52,7 +52,7 @@ class ApiserviceApplicationTests {
 
 		Exam newExam = new Exam();
 		//Nombre de materia
-		newExam.setMateria("Redes de Computadoras");
+		newExam.setMateria("Sistemas Operativos");
 		//Fechas: Inicio de Estudio y Examen final
 		Calendar fechaCalendar = Calendar.getInstance(); 
 		fechaCalendar.set(Calendar.YEAR,2020);
@@ -64,7 +64,7 @@ class ApiserviceApplicationTests {
 		fechaCalendar.set(Calendar.DAY_OF_MONTH,10);
 		newExam.setFinalTestDate(fechaCalendar.getTime());
 
-		Users usuario = userRepository.findByName("TEST_1_CREATE_USER");
+		Users usuario = userRepository.findByName("TEST_1_POSTMAN_CREATE_USER");
 		newExam.setUsuario(usuario);
 		Exam examenGuardado = examRepository.save(newExam);
 		assertTrue(examenGuardado.getMateria().equalsIgnoreCase(newExam.getMateria()));
