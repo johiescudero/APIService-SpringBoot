@@ -1,8 +1,6 @@
 package com.asistente.apiservice.controllers;
 
 import java.util.List;
-
-import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Mode;
 import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.services.PlanningService;
@@ -32,9 +30,9 @@ public class PlanningController {
     }
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-    @PostMapping(value = "/add")
-    public Planning crearPlanificacion(@RequestBody Exam finalTest, Mode modo) { 
-        return planningService.crearPlanificacion(finalTest, modo);
+    @PostMapping(value = "/add/{idExam}")
+    public Planning crearPlanificacion(@PathVariable ("idExam") Integer idExam, @RequestBody Mode modo) { 
+        return planningService.crearPlanificacion(idExam, modo);
     }
 
    /**PUT : Actualizar una planificación */

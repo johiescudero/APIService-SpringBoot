@@ -7,6 +7,7 @@ import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.models.Goal;
 import com.asistente.apiservice.models.Mode;
+import com.asistente.apiservice.repository.ExamRepository;
 import com.asistente.apiservice.repository.GoalRepository;
 import com.asistente.apiservice.repository.PlanningRepository;
 
@@ -19,6 +20,8 @@ public class PlanningService {
     @Autowired
     private PlanningRepository planningRepository;
     @Autowired
+    private ExamRepository examRepository; 
+    @Autowired
     private GoalRepository goalRepository; 
 
      /**GET : Retorna el conjunto total de planificaciones registrados en la base de datos */
@@ -28,9 +31,11 @@ public class PlanningService {
      }
  
      /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
-     public Planning crearPlanificacion(Exam finalTest, Mode modo) {
+     public Planning crearPlanificacion(int idExam, Mode modo) {
         //Creo la planificación
         Planning newPlanning = new Planning();
+        //Recupero el final
+        Exam finalTest = examRepository.findById(idExam).get();
         //Calculo la cantidad de días reales que se tienen para rendir el final
         long cantDiasReales = getCantDiasReales(finalTest);
         //Calculo la cantidad de días necesarios de acuerdo al modo ingresado
@@ -51,7 +56,7 @@ public class PlanningService {
     }
  
     //METODO: Obtiene la cantidad de días entre dos fechas => Objetivo: calcular la cantidad de días reales para estudiar.
-    public long getCantDiasReales(Exam finalTest){
+    private long getCantDiasReales(Exam finalTest){
          Date fechaInicioEstudio = finalTest.getInicioEstudioDate();
          Date fechaFinal = finalTest.getFinalTestDate();
          long diferencia = fechaFinal.getTime() - fechaInicioEstudio.getTime();
@@ -59,7 +64,7 @@ public class PlanningService {
         return days - 1;
     }
     //METODO: Obtiene la cantidad de días NECESARIOS para estudiar todos los temas -> tiene en cuenta el modo
-     public int getCantDiasPorTemaNecesarios(Mode modo, int cantTemas){
+    private int getCantDiasPorTemaNecesarios(Mode modo, int cantTemas){
         int cantDiasPorTema;
         //Si el modo es estandar ==> Cantidad de días por tema = 4 
         if ((modo.getModo()).compareTo("Estándar")==0)
