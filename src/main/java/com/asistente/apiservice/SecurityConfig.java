@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     /**
      * Cualquier petición que se realiza debe provenir de un usuario autenticado
-     //COMENTADO MOMENTANEAMENTE PARA PRUEBAS A TRAVÉS DE POSTMAN
+     */
     @Override
     protected void configure(HttpSecurity http)throws Exception{
         http
@@ -45,15 +45,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .httpBasic();
     }
-    */
-    /**
-     * Se permite cualquier solicitud, es para la prueba de la API REST
-     */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {    
-        http
-            .csrf().disable()
-            .authorizeRequests()
-                .anyRequest().permitAll();
-        }
-}
+    
+   }

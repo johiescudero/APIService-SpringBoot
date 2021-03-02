@@ -19,12 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserDetailsService {
-
+public class UserService  implements UserDetailsService
+{
     @Autowired
     private UserRepository userRepository;
     @Autowired
 	private BCryptPasswordEncoder encoder;
+    
     //Indica a spring de donde se van a sacar los datos del usuario.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,7 +39,7 @@ public class UserService implements UserDetailsService {
         
         return newUserDetails;
     }
-
+    
     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
     public List<Users> listarUsers() {
       return userRepository.findAll();
@@ -52,7 +53,7 @@ public class UserService implements UserDetailsService {
         if (createdUser !=null)
             return new ResponseEntity<Users>(createdUser,HttpStatus.OK);
         else
-            return new ResponseEntity<Users>(createdUser,HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Users>(createdUser,HttpStatus.UNAUTHORIZED);
     }
     /**PUT : Actualizar un usuario */
     public ResponseEntity<Users> updateUser(int id, Users updUser){
