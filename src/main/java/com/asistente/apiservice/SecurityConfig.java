@@ -33,17 +33,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .userDetailsService(userDetailsService).passwordEncoder(bCrypt);
     }
 
-    /**
+     /**
      * Cualquier petición que se realiza debe provenir de un usuario autenticado
+     * 
      */
     @Override
     protected void configure(HttpSecurity http)throws Exception{
+        http.cors();
         http
+            .httpBasic().and()
             .authorizeRequests()
-            .anyRequest()
-            .authenticated()
-            .and()
-            .httpBasic();
+            .antMatchers("/").hasRole("ADMIN")
+            .anyRequest().authenticated();
+        
     }
-    
+
+      
    }

@@ -13,35 +13,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value ="/users")
 public class UserController {
     
     @Autowired
     private UserService userService; 
     
-    /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
-    @GetMapping(value = "/all")
+     /**LOGIN: Inicio de sesión */
+	 @GetMapping(value = "/login")
+	 public String login(Users user){
+                  
+         return "Estas autenticado";
+	 }
+
+     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
+    @GetMapping(value = "/users/all")
     public List<Users> listarUsers(){
       return userService.listarUsers();
       
     }
     /**POST : Añadir nuevo usuario */
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/users/add")
     public ResponseEntity<Users> addUser(@RequestBody Users newUser) {
         return userService.addUser(newUser);
     }
 
     /**PUT : Actualizar un usuario */
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/users/update/{id}")
     public void updateUser(@PathVariable ("id")Integer id, @RequestBody Users updUser){
         userService.updateUser(id,updUser);
     }
     /**DELETE : Eliminar un usuario con el id */
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/users/delete/{id}")
     public void deleteUser(@PathVariable ("id") Integer id){
         userService.deleteUser(id);
     }
