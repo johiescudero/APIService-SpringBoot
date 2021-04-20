@@ -21,7 +21,7 @@ public class ExamController {
 
     @Autowired
     private ExamService finalExamService; 
-
+   
     /** Retorna el conjunto total de finales registrados en la base de datos */
     @GetMapping(value = "/all")
     public List<Exam> getFinales() {
@@ -44,4 +44,5 @@ public class ExamController {
     public void deleteFinalTest(@PathVariable ("id") Integer id){
       finalExamService.deleteFinalTest(id);
     }
-}
+
+  }

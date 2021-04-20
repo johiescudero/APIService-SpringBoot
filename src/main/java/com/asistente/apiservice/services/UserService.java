@@ -28,9 +28,9 @@ public class UserService  implements UserDetailsService
     
     //Indica a spring de donde se van a sacar los datos del usuario.
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         
-        Users usuario = userRepository.findByName(username);
+        Users usuario = userRepository.findByEmail(email);
         
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority("ADMIN"));

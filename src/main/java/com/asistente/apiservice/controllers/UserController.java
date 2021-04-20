@@ -1,7 +1,6 @@
 package com.asistente.apiservice.controllers;
 
 import java.util.List;
-
 import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.services.UserService;
 
@@ -32,9 +31,9 @@ public class UserController {
     @GetMapping(value = "/users/all")
     public List<Users> listarUsers(){
       return userService.listarUsers();
-      
     }
-    /**POST : Añadir nuevo usuario */
+
+     /**POST : Añadir nuevo usuario */
     @PostMapping(value = "/users/add")
     public ResponseEntity<Users> addUser(@RequestBody Users newUser) {
         return userService.addUser(newUser);

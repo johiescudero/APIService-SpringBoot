@@ -3,6 +3,7 @@ package com.asistente.apiservice.services;
 import java.util.List;
 
 import com.asistente.apiservice.models.Exam;
+import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.ExamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class ExamService {
     /** Retorna el conjunto total de finales registrados en la base de datos */
     public List<Exam> getFinales() {
       return finalExamRepository.findAll();
+    }
+
+    /** Retorna el conjunto total de finales registrados en la base de datos */
+    public List<Exam> getMisFinales(Users user) {
+      return finalExamRepository.findByUsuario(user);
     }
 
     /**POST : Añadir nuevo final */

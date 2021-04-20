@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
 
 @Configuration
 @EnableWebSecurity
@@ -34,9 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
      /**
-     * Cualquier petición que se realiza debe provenir de un usuario autenticado
-     * 
-     */
+      * Cualquier petición que se realiza debe provenir de un usuario autenticado*/
     @Override
     protected void configure(HttpSecurity http)throws Exception{
         http.cors();
@@ -44,9 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .httpBasic().and()
             .authorizeRequests()
             .antMatchers("/").hasRole("ADMIN")
-            .anyRequest().authenticated();
-        
-    }
+            .anyRequest().authenticated()
+            .and()
+            .httpBasic();
+        http
+        .csrf()
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        }
 
-      
-   }
+    
+}
