@@ -1,4 +1,4 @@
-package com.asistente.apiservice;
+//package com.asistente.apiservice;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +21,7 @@ package com.asistente.apiservice;
 //import org.springframework.boot.test.context.SpringBootTest;
 
 //@SpringBootTest
-class ApiserviceApplicationTests {
+//class ApiserviceApplicationTests {
 
 	//@Autowired
 	//private UserRepository userRepository;
@@ -137,5 +137,5 @@ class ApiserviceApplicationTests {
 	}
 	*/	
 	
-}
+//}
 

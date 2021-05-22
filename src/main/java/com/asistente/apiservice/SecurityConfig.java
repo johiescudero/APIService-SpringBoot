@@ -1,4 +1,4 @@
-package com.asistente.apiservice;
+/*package com.asistente.apiservice;
 
 import com.asistente.apiservice.services.UserService;
 
@@ -36,8 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
      /**
-      * Cualquier petición que se realiza debe provenir de un usuario autenticado*/
-    @Override
+      * Cualquier petición que se realiza debe provenir de un usuario autenticado
     protected void configure(HttpSecurity http)throws Exception{
         http.cors();
         http
@@ -54,3 +53,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     
 }
+*/
