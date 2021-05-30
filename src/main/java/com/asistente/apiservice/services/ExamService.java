@@ -1,5 +1,4 @@
 package com.asistente.apiservice.services;
-
 import java.util.List;
 
 import com.asistente.apiservice.models.Exam;
@@ -21,13 +20,18 @@ public class ExamService {
     }
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
+    public Exam getExamById(Integer id) {
+      return finalExamRepository.findById(id).get();
+    }
+    /** Retorna el conjunto total de finales registrados en la base de datos */
     public List<Exam> getMisFinales(Users user) {
       return finalExamRepository.findByUsuario(user);
     }
 
     /**POST : Añadir nuevo final */
-   public void addFinalTest(Exam newFinalTest) {
-    finalExamRepository.save(newFinalTest);
+   public Exam addFinalTest(Exam newFinalTest) {
+
+    return finalExamRepository.save(newFinalTest);
        
    }
    /**PUT : Actualizar un final */

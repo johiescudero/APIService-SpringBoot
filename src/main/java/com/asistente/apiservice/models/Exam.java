@@ -11,6 +11,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity(name = "Exam")
 @Table(name = "exams")
 public class Exam {
@@ -29,9 +33,13 @@ public class Exam {
     private String materia;
     
     @Column(name = "inicioEstudioDate", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date inicioEstudioDate;
     
     @Column(name = "finalEstudioDate", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date finalTestDate;
   
     //Constructor

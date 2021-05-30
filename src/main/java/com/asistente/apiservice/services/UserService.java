@@ -7,8 +7,8 @@ import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
 // import org.springframework.security.core.userdetails.User;
@@ -47,16 +47,17 @@ public class UserService
       
     }
     /**POST : Añadir nuevo usuario */
-    // public ResponseEntity<Users> addUser(Users newUser) {
-    //     String password = newUser.getPassword();
-    //     newUser.setPassword(encoder.encode(password));
-    //     Users createdUser = userRepository.save(newUser);
-    //     if (createdUser !=null)
-    //         return new ResponseEntity<Users>(createdUser,HttpStatus.OK);
-    //     else
-    //         return new ResponseEntity<Users>(createdUser,HttpStatus.UNAUTHORIZED);
-    // }
-    /**PUT : Actualizar un usuario */
+    public ResponseEntity<Users> addUser(Users newUser) {
+        // String password = newUser.getPassword();
+        // newUser.setPassword(encoder.encode(password));
+        Users createdUser = userRepository.save(newUser);
+        if (createdUser !=null)
+            return new ResponseEntity<Users>(createdUser,HttpStatus.OK);
+        else
+            return new ResponseEntity<Users>(createdUser,HttpStatus.UNAUTHORIZED);
+    }
+
+    // /**PUT : Actualizar un usuario */
     // public ResponseEntity<Users> updateUser(int id, Users updUser){
     //    updUser.setId(id);
     // //    return addUser(updUser);

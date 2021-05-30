@@ -28,12 +28,18 @@ public class ExamController {
        return finalExamService.getFinales();
      }
 
+     /** Retorna el conjunto total de finales registrados en la base de datos */
+    @GetMapping(value = "/{id}")
+    public Exam getExamByID(@PathVariable ("id") Integer id) {
+       return finalExamService.getExamById(id);
+     }
+
      /**POST : Añadir nuevo final */
     @PostMapping(value = "/add")
-    public void addFinalTest(@RequestBody Exam newFinalTest) {
-      finalExamService.addFinalTest(newFinalTest);
-        
+    public Exam addFinalTest(@RequestBody Exam newFinalTest) {
+      return finalExamService.addFinalTest(newFinalTest);        
     }
+    
     /**PUT : Actualizar un final */
     @PutMapping(value = "/update/{id}")
     public void updateFinalTest(@RequestBody Exam user){
