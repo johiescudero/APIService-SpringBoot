@@ -25,9 +25,15 @@ public class PlanningController {
     /**GET : Retorna el conjunto total de planificaciones registrados en la base de datos */
     @GetMapping(value = "/all")
     public List<Planning> listarPlanificaciones(){
-      return planningService.listarPlanificaciones();
-      
+      return planningService.listarPlanificaciones(); 
     }
+
+    /**GET : Retorna el conjunto total de planificaciones asociadas a un examen final */
+    @GetMapping(value = "/all/{id}")
+    public List<Planning> getPlanningsByExamId(@PathVariable ("id") Integer idExam){
+      return planningService.getPlanningsByExamId(idExam);
+    }
+      
 
     /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
     @PostMapping(value = "/add/{idExam}")

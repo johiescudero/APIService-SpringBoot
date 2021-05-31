@@ -1,5 +1,6 @@
 package com.asistente.apiservice.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,19 @@ public class PlanningService {
        return planningRepository.findAll();
        
      }
+    
+     /**GET : Retorna el conjunto total de planificaciones registrados en la base de datos */
+     public List<Planning> getPlanningsByExamId(Integer idExam) {
+        Exam exam = examRepository.findById(idExam).get();
+        List<Planning> allPlannings = this.listarPlanificaciones();
+        List<Planning> planningsAsociadas = new ArrayList<Planning>();
+        for (Planning planning: allPlannings){
+            if (planning.getExam().equals(exam))
+                planningsAsociadas.add(planning);
+
+        }
+        return planningsAsociadas;
+    }
  
      /**POST : Crear y guardar una nueva planificación a partir de los datos del final y el modo indicado */
      public Planning crearPlanificacion(int idExam, Mode modo) {
@@ -84,5 +98,7 @@ public class PlanningService {
     public void eliminar(Integer id){
        planningRepository.deleteById(id);
     }
+
+    
     
 }
