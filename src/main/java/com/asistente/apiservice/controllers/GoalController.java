@@ -27,10 +27,17 @@ public class GoalController {
     public List<Goal> getGoals(){
       return goalService.getGoals();
     }
+
+    /** Retorna el conjunto total de objetivos registrados en la base de datos */
+    @GetMapping(value = "/all/{id}")
+    public List<Goal> getGoalsByExamId(@PathVariable ("id") Integer id){
+      return goalService.getGoalsByExamId(id);
+     }
+    
      /**POST : Añadir nuevo subgoal */
     @PostMapping(value = "/add")
-    public void addGoal(@RequestBody Goal newSubGoal) {
-      goalService.addGoal(newSubGoal);
+    public Goal addGoal(@RequestBody Goal newSubGoal) {
+       return goalService.addGoal(newSubGoal);
         
     }
     /**PUT : Actualizar un subgoal */
