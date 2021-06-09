@@ -7,8 +7,6 @@ import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
 // import org.springframework.security.core.userdetails.User;
@@ -41,32 +39,35 @@ public class UserService
     //     return newUserDetails;
     // }
     
+    /**POST: Loguear usuario */
+    public Users login(Users userLoggued){
+               
+        return userRepository.findByEmail(userLoggued.getEmail());
+    }
+
+
     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
     public List<Users> listarUsers() {
       return userRepository.findAll();
       
     }
     /**POST : Añadir nuevo usuario */
-    public ResponseEntity<Users> addUser(Users newUser) {
+    public Users addUser(Users newUser) {
         // String password = newUser.getPassword();
         // newUser.setPassword(encoder.encode(password));
-        Users createdUser = userRepository.save(newUser);
-        if (createdUser !=null)
-            return new ResponseEntity<Users>(createdUser,HttpStatus.OK);
-        else
-            return new ResponseEntity<Users>(createdUser,HttpStatus.UNAUTHORIZED);
+        return userRepository.save(newUser);
     }
 
-    // /**PUT : Actualizar un usuario */
-    // public ResponseEntity<Users> updateUser(int id, Users updUser){
-    //    updUser.setId(id);
-    // //    return addUser(updUser);
+    //**PUT : Actualizar un usuario */
+    public Users updateUser(int id, Users updUser){
+         updUser.setId(id);
+        return addUser(updUser);
+    }
   
-    // }
-
     /**DELETE : Eliminar un usuario con el id */
     public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
     
+
 }

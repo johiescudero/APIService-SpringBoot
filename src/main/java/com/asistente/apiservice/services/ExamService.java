@@ -1,9 +1,11 @@
 package com.asistente.apiservice.services;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.ExamRepository;
+import com.asistente.apiservice.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ public class ExamService {
     
     @Autowired
     private ExamRepository finalExamRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
     public List<Exam> getFinales() {
@@ -23,9 +27,17 @@ public class ExamService {
     public Exam getExamById(Integer id) {
       return finalExamRepository.findById(id).get();
     }
+
     /** Retorna el conjunto total de finales registrados en la base de datos */
-    public List<Exam> getMisFinales(Users user) {
-      return finalExamRepository.findByUsuario(user);
+    public List<Exam> getMisFinales(Integer id) {
+        Users userLoggedIn = userRepository.findById(id).get();
+        List<Exam> allExams = this.getFinales();
+        List<Exam> examsAsociados = new ArrayList<Exam>();
+        for (Exam examen: allExams){
+            if (examen.getUsuario().equals(userLoggedIn))
+               examsAsociados.add(examen);
+        }
+        return examsAsociados;
     }
 
     /**POST : Añadir nuevo final */
