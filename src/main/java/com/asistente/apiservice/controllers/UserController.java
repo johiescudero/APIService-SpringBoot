@@ -40,13 +40,13 @@ public class UserController {
      }
 
     /**PUT : Actualizar un usuario */
-    @PutMapping(value = "/users/update/{id}")
+    @PutMapping(value = "/update/{id}")
     public void updateUser(@PathVariable ("id")Integer id, @RequestBody Users updUser){
         userService.updateUser(id,updUser);
     }
 
     /**DELETE : Eliminar un usuario con el id */
-    @DeleteMapping(value = "/users/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void deleteUser(@PathVariable ("id") Integer id){
         userService.deleteUser(id);
     }

@@ -41,8 +41,9 @@ public class UserService
     
     /**POST: Loguear usuario */
     public Users login(Users userLoggued){
-               
-        return userRepository.findByEmail(userLoggued.getEmail());
+        Users findIt = userRepository.findByEmail(userLoggued.getEmail());
+        
+        return findIt;
     }
 
 
