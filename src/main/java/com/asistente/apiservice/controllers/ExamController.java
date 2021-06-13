@@ -29,7 +29,7 @@ public class ExamController {
     }
 
     /** Retorna el conjunto de finales registrados para usuario ID en la base de datos */
-    @GetMapping(value = "/{idUser}")
+    @GetMapping(value = "/all/{idUser}")
     public List<Exam> getFinalesByUserId(@PathVariable ("idUser") Integer idUser) {
        return finalExamService.getMisFinales(idUser);
     }
