@@ -41,9 +41,9 @@ public class ExamController {
      }
 
      /**POST : Añadir nuevo final */
-    @PostMapping(value = "/add")
-    public Exam addFinalTest(@RequestBody Exam newFinalTest) {
-      return finalExamService.addFinalTest(newFinalTest);        
+    @PostMapping(value = "/add/{idUser}")
+    public Exam addFinalTest(@PathVariable ("idUser") Integer idUser, @RequestBody Exam newFinalTest) {
+      return finalExamService.addFinalTest(idUser, newFinalTest);        
     }
     
     /**PUT : Actualizar un final */

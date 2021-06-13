@@ -35,7 +35,8 @@ public class ExamService {
    }
 
     /**POST : Añadir nuevo final */
-   public Exam addFinalTest(Exam newFinalTest) {
+   public Exam addFinalTest(int idUser, Exam newFinalTest) {
+    newFinalTest.setUsuario(this.userService.getUserById(idUser)); 
 
     return finalExamRepository.save(newFinalTest);
        
