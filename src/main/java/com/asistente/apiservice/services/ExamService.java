@@ -5,8 +5,6 @@ import java.util.List;
 import com.asistente.apiservice.models.Exam;
 import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.ExamRepository;
-import com.asistente.apiservice.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,7 @@ public class ExamService {
     @Autowired
     private ExamRepository finalExamRepository;
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
     public List<Exam> getFinales() {
@@ -24,21 +22,22 @@ public class ExamService {
     }
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
-    public Exam getExamById(Integer id) {
-      return finalExamRepository.findById(id).get();
+    public Exam getExamById(int idUser) {
+      return finalExamRepository.findById(idUser).get();
     }
 
     /** Retorna el conjunto total de finales registrados en la base de datos */
-    public List<Exam> getMisFinales(Integer id) {
-        Users userLoggedIn = userRepository.findById(id).get();
+    public List<Exam> getMisFinales(int idUser) {
+        Users userLoggedIn = userService.getUserById(idUser);
         List<Exam> allExams = this.getFinales();
         List<Exam> examsAsociados = new ArrayList<Exam>();
-        for (Exam examen: allExams){
-            if (examen.getUsuario().equals(userLoggedIn))
-               examsAsociados.add(examen);
+        for (Exam e: allExams){
+            if (e.getUsuario().equals(userLoggedIn))
+               examsAsociados.add(e);
         }
         return examsAsociados;
-    }
+
+   }
 
     /**POST : Añadir nuevo final */
    public Exam addFinalTest(Exam newFinalTest) {

@@ -28,6 +28,12 @@ public class UserController {
 	 }
 
      /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
+    @GetMapping(value = "/{id}")
+    public Users getUserById(@PathVariable ("id") Integer id){
+      return userService.getUserById(id);
+    }
+
+     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
     @GetMapping(value = "/all")
     public List<Users> listarUsers(){
       return userService.listarUsers();

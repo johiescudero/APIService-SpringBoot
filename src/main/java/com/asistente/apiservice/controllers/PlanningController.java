@@ -29,8 +29,8 @@ public class PlanningController {
     }
 
     /**GET : Retorna el conjunto total de planificaciones asociadas a un examen final */
-    @GetMapping(value = "/all/{id}")
-    public List<Planning> getPlanningsByExamId(@PathVariable ("id") Integer idExam){
+    @GetMapping(value = "/all/{idExam}")
+    public List<Planning> getPlanningsByExamId(@PathVariable ("idExam") Integer idExam){
       return planningService.getPlanningsByExamId(idExam);
     }
       
