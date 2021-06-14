@@ -1,6 +1,4 @@
 package com.asistente.apiservice.services;
-
-// import java.util.ArrayList;
 import java.util.List;
 
 import com.asistente.apiservice.models.Users;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    
     @Autowired
     private UsersRepository userRepository;
     
@@ -29,7 +28,6 @@ public class UserService {
      /**GET : Retorna el usuario con ID igual al parametro especificado */
      public List<Users> listarUsers() {
         return userRepository.findAll();
-        
       }
     
     /**POST : Añadir nuevo usuario */
@@ -49,6 +47,5 @@ public class UserService {
     public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
-    
 
 }
