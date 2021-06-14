@@ -16,7 +16,10 @@ public class UserService {
     /**POST: Loguear usuario */
     public Users login(Users userLoggued){
         Users findIt = userRepository.findByEmail(userLoggued.getEmail());
-        return findIt;
+        if (findIt.getPassword().equals(userLoggued.getPassword()))
+            return findIt;
+        else
+            return null;
     }
 
     /**GET : Retorna el conjunto total de usuarios registrados en la base de datos */
