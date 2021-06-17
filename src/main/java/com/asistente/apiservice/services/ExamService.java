@@ -2,6 +2,8 @@ package com.asistente.apiservice.services;
 import java.util.List;
 
 import com.asistente.apiservice.models.Exam;
+import com.asistente.apiservice.models.Goal;
+import com.asistente.apiservice.models.Planning;
 import com.asistente.apiservice.models.Users;
 import com.asistente.apiservice.repository.ExamRepository;
 
@@ -14,7 +16,11 @@ public class ExamService {
     @Autowired
     private ExamRepository finalExamRepository;
     @Autowired
-    private UserService userService; 
+    private UserService userService;
+    @Autowired
+    private GoalService goalService;
+    @Autowired
+    private PlanningService planningService;
   
     /** Retorna el conjunto total de finales registrados en la base de datos */
     public List<Exam> getFinales() {
@@ -46,7 +52,19 @@ public class ExamService {
    }
    /**DELETE : Eliminar un final con el id */
    public void deleteFinalTest(Integer id){
+    List<Goal> temasAsociados = goalService.getGoalsByExamId(id);
+    List<Planning> planningAsociadas = planningService.getPlanningsByExamId(id);
+    
+    //Elimino los goals asociados al final
+    for (Goal goalAsociado: temasAsociados){
+      goalService.deleteGoal(goalAsociado.getId());
+    }
+    //Elimino las plannings asociadas al final
+    for (Planning planningAsociada: planningAsociadas){
+      planningService.eliminar(planningAsociada.getId());
+    }
     finalExamRepository.deleteById(id);
+
    }
 
   
