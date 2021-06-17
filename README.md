@@ -1,3 +1,5 @@
-# APIService-SpringBoot-MVC
- API REST service - Spring Boot 
- Funcionalidad de proyecto: "Asistente Finales"
+# API Service - Tecnología utilizada: Spring Boot
+ 
+ Proyecto Final de la Materia Ingeniería en Aplicaciones Web
+ 
+ Nombre: Asistente Finales
